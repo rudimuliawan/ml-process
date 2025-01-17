@@ -3,6 +3,16 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 
 
+NUMERICAL_COLUMNS = [
+    "age", "income", "employment_length", "loan_amount",
+    "loan_interest_rate", "loan_percent_income", "credit_history_length"
+]
+
+CATEGORICAL_COLUMNS = [
+    "home_ownership", "loan_intent", "loan_grade", "cb_person_default_on_file"
+]
+
+
 def load_data(filename):
     """
     This function loads the data from the csv file
@@ -121,3 +131,7 @@ def deserialize_data(path):
     """
     data = joblib.load(path)
     return data
+
+
+def concat_data(numerical_data, categorical_data):
+    return pd.concat([numerical_data, categorical_data], axis=1)
